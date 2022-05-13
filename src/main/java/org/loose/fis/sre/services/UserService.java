@@ -24,6 +24,13 @@ public class UserService {
         userRepository = database.getRepository(User.class);
     }
 
+    public static void printUsers(){
+        org.dizitart.no2.objects.Cursor<User> cursor = userRepository.find();
+
+        for(User i: cursor)
+            System.out.println(i.getUsername()+" "+i.getRole());
+    }
+
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new User(username, encodePassword(username, password), role));
