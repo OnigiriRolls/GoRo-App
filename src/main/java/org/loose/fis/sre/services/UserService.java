@@ -2,6 +2,7 @@ package org.loose.fis.sre.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.loose.fis.sre.exceptions.PasswordNotOkException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.model.User;
 
@@ -31,8 +32,9 @@ public class UserService {
             System.out.println(i.getUsername()+" "+i.getRole());
     }
 
-    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
+    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException, PasswordNotOkException {
         checkUserDoesNotAlreadyExist(username);
+        checkPassword(password);
         userRepository.insert(new User(username, encodePassword(username, password), role));
     }
 
@@ -41,6 +43,17 @@ public class UserService {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
         }
+    }
+
+    private static void checkPassword(String password) throws PasswordNotOkException{
+        if(password.length()<4)
+            throw new PasswordNotOkException();
+        int nr=0;
+        for(int i=0; i<password.length(); i++)
+            if(Character.isUpperCase(password.charAt(i)))
+                nr++;
+        if(nr==0)
+            throw new PasswordNotOkException();
     }
 
     private static String encodePassword(String salt, String password) {

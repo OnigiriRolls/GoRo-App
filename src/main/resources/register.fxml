@@ -11,6 +11,7 @@
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
     </padding>
+
     <Text id="title-text" text="Go-Ro App" GridPane.columnIndex="0" GridPane.columnSpan="2"
           GridPane.rowIndex="0"/>
 
@@ -28,6 +29,11 @@
     </ChoiceBox>
 
     <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+    <HBox alignment="BOTTOM_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+    <Text fx:id="rule1" text="The password must have at least 4 characters and 1 upper case letter!"/>
+    </HBox>
+
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <Button onAction="#handleRegisterAction" text="Register"/>
     </HBox>

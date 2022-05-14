@@ -5,6 +5,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import org.loose.fis.sre.exceptions.PasswordNotOkException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.services.UserService;
 
@@ -18,6 +19,8 @@ public class RegistrationController {
     private TextField usernameField;
     @FXML
     private ChoiceBox role;
+    @FXML
+    private Text rule1;
 
     @FXML
     public void initialize() {
@@ -26,10 +29,14 @@ public class RegistrationController {
 
     @FXML
     public void handleRegisterAction() {
+        rule1.setText("");
+
         try {
             UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
             registrationMessage.setText("Account created successfully!");
         } catch (UsernameAlreadyExistsException e) {
+            registrationMessage.setText(e.getMessage());
+        } catch (PasswordNotOkException e){
             registrationMessage.setText(e.getMessage());
         }
     }
