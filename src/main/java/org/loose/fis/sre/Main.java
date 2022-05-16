@@ -21,6 +21,7 @@ public class Main extends Application {
         primaryStage.setTitle("GoRo App Registration");
         primaryStage.setScene(new Scene(root, 500, 400));
         primaryStage.show();
+        UserService.printUsers();
     }
 
     private void initDirectory() {
