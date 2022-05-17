@@ -13,7 +13,8 @@ import org.loose.fis.sre.services.UserService;
 public class AdminMenuController {
 
     @FXML
-    public void handleAddOfferAction(Stage primaryStage) throws Exception{
+    public void handleAddOfferAction() throws Exception{
+        Stage primaryStage = null;
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("addOffer.fxml"));
         primaryStage.setTitle("Add Offer");
         primaryStage.setScene(new Scene(root, 500, 400));
