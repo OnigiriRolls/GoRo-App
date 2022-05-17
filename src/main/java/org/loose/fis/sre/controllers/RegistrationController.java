@@ -6,8 +6,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.loose.fis.sre.exceptions.PasswordNotOkException;
+import org.loose.fis.sre.exceptions.UserDoesNotExistException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
+import org.loose.fis.sre.exceptions.WrongPasswordException;
 import org.loose.fis.sre.services.UserService;
+
+import java.net.http.WebSocketHandshakeException;
 
 public class RegistrationController {
 
@@ -40,4 +44,20 @@ public class RegistrationController {
             registrationMessage.setText(e.getMessage());
         }
     }
+
+    @FXML
+    public void handleLogInAction() {
+        rule1.setText("");
+
+        try {
+            UserService.checkPassAndUsername(usernameField.getText());
+            UserService.wrongPassword(usernameField.getText());
+        } catch (UserDoesNotExistException e){
+            registrationMessage.setText(e.getMessage());
+        } catch (WrongPasswordException e){
+            registrationMessage.setText((e.getMessage()));
+        }
+    }
+
+
 }

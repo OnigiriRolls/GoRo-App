@@ -3,7 +3,9 @@ package org.loose.fis.sre.services;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.PasswordNotOkException;
+import org.loose.fis.sre.exceptions.UserDoesNotExistException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
+import org.loose.fis.sre.exceptions.WrongPasswordException;
 import org.loose.fis.sre.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -77,5 +79,18 @@ public class UserService {
         return md;
     }
 
+    public static void checkPassAndUsername(String username) throws UserDoesNotExistException {
+        int found = 0;
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername()))
+                found = 1;
+        }
+        if(found == 0) throw new UserDoesNotExistException();
+    }
 
+    public static void wrongPassword(String username) throws WrongPasswordException{
+        for (User user : userRepository.find()) {
+            if (!(Objects.equals(username, user.getUsername()))) throw new WrongPasswordException();
+        }
+    }
 }
