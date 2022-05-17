@@ -17,4 +17,8 @@ public class OfferService {
 
         offersRepository = database.getRepository(Offers.class);
     }
+
+    public static void addOffer(String title, String photo, String details) {
+        offersRepository.insert(new Offers(title,photo,details));
+    }
 }
