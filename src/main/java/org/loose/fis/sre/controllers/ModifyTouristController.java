@@ -1,5 +1,7 @@
 package org.loose.fis.sre.controllers;
 
+import org.loose.fis.sre.services.TouristAttractionService;
+
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -15,9 +17,13 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,6 +45,8 @@ public class ModifyTouristController {
     private TextField priceModify;
     @FXML
     private TextArea descriptModify;
+
+    private String photoModify;
 
     public void initialize() {
 
@@ -66,7 +74,7 @@ public class ModifyTouristController {
         layout.setCenter(contentPane);
     }
 
-    void addImage(Image i, StackPane pane){
+    void addImage(Image i, StackPane pane) {
         imageView.setImage(i);
         pane.getChildren().add(imageView);
         imageView.setFitWidth(200);
@@ -84,8 +92,10 @@ public class ModifyTouristController {
                 @Override
                 public void run() {
                     System.out.println(file.getAbsolutePath());
+                    photoModify = file.getAbsolutePath();
+
                     try {
-                        if(!contentPane.getChildren().isEmpty()){
+                        if (!contentPane.getChildren().isEmpty()) {
                             contentPane.getChildren().remove(0);
                         }
                         Image img = new Image(new FileInputStream(file.getAbsolutePath()));
@@ -101,7 +111,7 @@ public class ModifyTouristController {
         e.consume();
     }
 
-    private  void mouseDragOver(final DragEvent e) {
+    private void mouseDragOver(final DragEvent e) {
         final Dragboard db = e.getDragboard();
 
         final boolean isAccepted = db.getFiles().get(0).getName().toLowerCase().endsWith(".png")
@@ -121,8 +131,15 @@ public class ModifyTouristController {
         }
     }
 
-    public void handleModify(){
-        //save in baza de date, se inchide fxml
-        //data.getValue().getDayOfMonth() + "  " + data.getValue().getMonth()+" " + data.getValue().getYear()
+    public void handleModify() {
+        String availFrom = String.valueOf(availFromModify.getValue().getDayOfMonth())
+                + availFromModify.getValue().getMonth() + availFromModify.getValue().getYear();
+        String availTo = String.valueOf(availToModify.getValue().getDayOfMonth())
+                + availToModify.getValue().getMonth() + availToModify.getValue().getYear();
+        String avail = availFrom+";"+availTo;
+
+        TouristAttractionService.addPhoto(photoModify);
+        TouristAttractionService.saveChanges(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
     }
+
 }
