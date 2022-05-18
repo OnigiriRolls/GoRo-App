@@ -25,7 +25,7 @@ public class TouristAttractionListController {
     }
 
     public void handleModifyAttraction(){
-
+        //deschide fxml modify
     }
 
     public void handleDeleteAttraction(){
