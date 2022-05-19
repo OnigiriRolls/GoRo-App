@@ -30,10 +30,6 @@ public class UserService {
         userRepository = database.getRepository(User.class);
 
         attractionsRepository = database.getRepository(TouristAttractions.class);
-        if(attractionsRepository==null)
-            System.out.println("null");
-        else
-            System.out.println("Tabelul este"+attractionsRepository.getName());
     }
 
     public static void printUsers(){

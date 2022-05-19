@@ -147,7 +147,7 @@ public class ModifyTouristController {
                 + "." + availToModify.getValue().getMonth() + "." + availToModify.getValue().getYear();
         String avail = availFrom+";"+availTo;
 
-        TouristAttractionService.addPhoto(photoModify);
+        //TouristAttractionService.addPhoto(photoModify);
         TouristAttractionService.saveChanges(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
     }
 

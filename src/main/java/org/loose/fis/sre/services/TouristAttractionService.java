@@ -59,7 +59,7 @@ public class TouristAttractionService {
             File initialImage = new File(absPath);
             bImage = ImageIO.read(initialImage);
 
-            ImageIO.write(bImage, "jpg", new File("src/main/resources/images"));
+            ImageIO.write(bImage, "jpg", new File("images"));
 
         } catch (IOException e) {
             System.out.println("Exception occured :" + e.getMessage());

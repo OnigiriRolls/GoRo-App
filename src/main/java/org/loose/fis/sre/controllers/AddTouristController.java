@@ -149,10 +149,11 @@ public class AddTouristController {
                 + "." + availToAdd.getValue().getMonth() + "." + availToAdd.getValue().getYear();
         String avail = availFrom + ";" + availTo;
 
-        TouristAttractionService.addPhoto(photoAdd);
+        //TouristAttractionService.addPhoto(photoAdd);
         try {
             TouristAttractionService.checkTADoesNotAlreadyExist(titleAdd.getText());
             TouristAttractionService.addTouristAttraction(titleAdd.getText(), TouristAttractionService.getPhotoTitle(photoAdd), avail, descriptAdd.getText(), Integer.valueOf(priceAdd.getText()));
+            addMessage.setText("Atractie Turistica adaugata!");
         } catch (TAAlreadyExistsException e){
             addMessage.setText(e.getMessage());
         }

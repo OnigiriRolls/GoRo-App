@@ -30,6 +30,8 @@ public class TouristAttractionListController {
             FXCollections.observableArrayList();
 
     public void initialize(){
+        data.clear();
+
         if(UserService.attractionsRepository != null) {
             for (TouristAttractions at : UserService.attractionsRepository.find()) {
                 data.add(at.getTitle());
@@ -39,19 +41,24 @@ public class TouristAttractionListController {
         attractionsListView.setItems(data);
     }
 
-    public void handleDeleteAttraction(){
-        int selectedIdx = attractionsListView.getSelectionModel().getSelectedIndex();
-        TouristAttractionService.deleteAttraction(attractionsListView.getSelectionModel().getSelectedItem().toString());
-        data.remove(selectedIdx);
+    public void handleDeleteAttraction() {
+        if (!data.isEmpty()) {
+            int selectedIdx = attractionsListView.getSelectionModel().getSelectedIndex();
+
+            TouristAttractionService.deleteAttraction(attractionsListView.getSelectionModel().getSelectedItem().toString());
+            data.remove(selectedIdx);
+        }
     }
 
     public void handleModifyAttraction(javafx.event.ActionEvent actionEvent) throws IOException {
-        //800 800
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("ModifyTourist.fxml"));
-        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if(!data.isEmpty()) {
+            //800 800
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("ModifyTourist.fxml"));
+            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
