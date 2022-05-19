@@ -15,17 +15,12 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button layoutX="67.0" layoutY="517.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="130.0" text="Add">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
       <Button layoutX="235.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleModifyAttraction" prefHeight="54.0" prefWidth="130.0" text="Modify">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button layoutX="404.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleDeleteAttraction" prefHeight="54.0" prefWidth="130.0" text="Delete">
+      <Button layoutX="80.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleDeleteAttraction" prefHeight="54.0" prefWidth="130.0" text="Delete">
          <font>
             <Font size="24.0" />
          </font>
