@@ -1,9 +1,14 @@
 package org.loose.fis.sre.controllers;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -14,14 +19,25 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import org.loose.fis.sre.exceptions.TAAlreadyExistsException;
+import org.loose.fis.sre.model.TouristAttractions;
+import org.loose.fis.sre.model.User;
+import org.loose.fis.sre.services.TouristAttractionService;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AddTouristController {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
     @FXML
     ImageView imageView;
     @FXML
@@ -38,6 +54,8 @@ public class AddTouristController {
     private TextField priceAdd;
     @FXML
     private TextArea descriptAdd;
+    @FXML
+    private Text addMessage;
 
     private String photoAdd;
 
@@ -124,8 +142,27 @@ public class AddTouristController {
         }
     }
 
-    public void handleAddAttraction(){
+    public void handleAddAttraction() {
+        String availFrom = availFromAdd.getValue().getDayOfMonth()
+                + "." + availFromAdd.getValue().getMonth() + "." + availFromAdd.getValue().getYear();
+        String availTo = availToAdd.getValue().getDayOfMonth()
+                + "." + availToAdd.getValue().getMonth() + "." + availToAdd.getValue().getYear();
+        String avail = availFrom + ";" + availTo;
 
+        TouristAttractionService.addPhoto(photoAdd);
+        try {
+            TouristAttractionService.checkTADoesNotAlreadyExist(titleAdd.getText());
+            TouristAttractionService.addTouristAttraction(titleAdd.getText(), TouristAttractionService.getPhotoTitle(photoAdd), avail, descriptAdd.getText(), Integer.valueOf(priceAdd.getText()));
+        } catch (TAAlreadyExistsException e){
+            addMessage.setText(e.getMessage());
+        }
     }
-
+    public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
+        //600 600
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("adminMenu.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

@@ -2,6 +2,7 @@ package org.loose.fis.sre.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,8 +14,8 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import org.loose.fis.sre.model.TouristAttractions;
 import org.loose.fis.sre.services.TouristAttractionService;
+import org.loose.fis.sre.services.UserService;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class TouristAttractionListController {
@@ -29,8 +30,8 @@ public class TouristAttractionListController {
             FXCollections.observableArrayList();
 
     public void initialize(){
-        if(TouristAttractionService.attractionsRepository != null) {
-            for (TouristAttractions at : TouristAttractionService.attractionsRepository.find()) {
+        if(UserService.attractionsRepository != null) {
+            for (TouristAttractions at : UserService.attractionsRepository.find()) {
                 data.add(at.getTitle());
             }
         }
@@ -47,6 +48,15 @@ public class TouristAttractionListController {
     public void handleModifyAttraction(javafx.event.ActionEvent actionEvent) throws IOException {
         //800 800
         root = FXMLLoader.load(getClass().getClassLoader().getResource("ModifyTourist.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
+        //600 600
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("adminMenu.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

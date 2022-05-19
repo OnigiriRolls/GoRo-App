@@ -1,5 +1,11 @@
 package org.loose.fis.sre.controllers;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.loose.fis.sre.services.TouristAttractionService;
 
 import javafx.application.Platform;
@@ -28,6 +34,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ModifyTouristController {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     ImageView imageView;
@@ -142,4 +151,12 @@ public class ModifyTouristController {
         TouristAttractionService.saveChanges(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
     }
 
+    public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
+        //600 600
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("TouristAttractionList.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
