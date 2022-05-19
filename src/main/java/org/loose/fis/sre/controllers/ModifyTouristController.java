@@ -141,14 +141,19 @@ public class ModifyTouristController {
     }
 
     public void handleModify() {
-        String availFrom =availFromModify.getValue().getDayOfMonth()
-                + "." + availFromModify.getValue().getMonth() + "." + availFromModify.getValue().getYear();
-        String availTo = availToModify.getValue().getDayOfMonth()
-                + "." + availToModify.getValue().getMonth() + "." + availToModify.getValue().getYear();
-        String avail = availFrom+";"+availTo;
+        if (titleModify.getText()!="" && TouristAttractionService.getPhotoTitle(photoModify)!=""
+                && availFromModify!=null && availToModify!=null && descriptModify.getText()!=""
+        && priceModify.getText()!="")
+        {
+            String availFrom = availFromModify.getValue().getDayOfMonth()
+                    + "." + availFromModify.getValue().getMonth() + "." + availFromModify.getValue().getYear();
+            String availTo = availToModify.getValue().getDayOfMonth()
+                    + "." + availToModify.getValue().getMonth() + "." + availToModify.getValue().getYear();
+            String avail = availFrom + ";" + availTo;
 
-        //TouristAttractionService.addPhoto(photoModify);
-        TouristAttractionService.saveChanges(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
+            //TouristAttractionService.addPhoto(photoModify);
+            TouristAttractionService.saveChanges(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
+        }
     }
 
     public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {

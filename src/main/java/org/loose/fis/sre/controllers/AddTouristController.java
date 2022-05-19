@@ -143,19 +143,23 @@ public class AddTouristController {
     }
 
     public void handleAddAttraction() {
-        String availFrom = availFromAdd.getValue().getDayOfMonth()
-                + "." + availFromAdd.getValue().getMonth() + "." + availFromAdd.getValue().getYear();
-        String availTo = availToAdd.getValue().getDayOfMonth()
-                + "." + availToAdd.getValue().getMonth() + "." + availToAdd.getValue().getYear();
-        String avail = availFrom + ";" + availTo;
+        if (titleAdd.getText()!="" && TouristAttractionService.getPhotoTitle(photoAdd)!=""
+                && availFromAdd!=null && availToAdd!=null && descriptAdd.getText()!=""
+                && priceAdd.getText()!="") {
+            String availFrom = availFromAdd.getValue().getDayOfMonth()
+                    + "." + availFromAdd.getValue().getMonth() + "." + availFromAdd.getValue().getYear();
+            String availTo = availToAdd.getValue().getDayOfMonth()
+                    + "." + availToAdd.getValue().getMonth() + "." + availToAdd.getValue().getYear();
+            String avail = availFrom + ";" + availTo;
 
-        //TouristAttractionService.addPhoto(photoAdd);
-        try {
-            TouristAttractionService.checkTADoesNotAlreadyExist(titleAdd.getText());
-            TouristAttractionService.addTouristAttraction(titleAdd.getText(), TouristAttractionService.getPhotoTitle(photoAdd), avail, descriptAdd.getText(), Integer.valueOf(priceAdd.getText()));
-            addMessage.setText("Atractie Turistica adaugata!");
-        } catch (TAAlreadyExistsException e){
-            addMessage.setText(e.getMessage());
+            //TouristAttractionService.addPhoto(photoAdd);
+            try {
+                TouristAttractionService.checkTADoesNotAlreadyExist(titleAdd.getText());
+                TouristAttractionService.addTouristAttraction(titleAdd.getText(), TouristAttractionService.getPhotoTitle(photoAdd), avail, descriptAdd.getText(), Integer.valueOf(priceAdd.getText()));
+                addMessage.setText("Atractie Turistica adaugata!");
+            } catch (TAAlreadyExistsException e) {
+                addMessage.setText(e.getMessage());
+            }
         }
     }
     public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
