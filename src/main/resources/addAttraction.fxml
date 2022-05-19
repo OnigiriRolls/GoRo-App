@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.ModifyTouristController">
+   <children>
+      <Button layoutX="330.0" layoutY="691.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="139.0" text="Add">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="98.0" layoutY="42.0" prefHeight="35.0" prefWidth="65.0" text="Title" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="titleAdd" layoutX="218.0" layoutY="44.0" prefHeight="31.0" prefWidth="218.0" />
+      <TextField fx:id="priceAdd" layoutX="218.0" layoutY="127.0" prefHeight="31.0" prefWidth="218.0" />
+      <Label alignment="CENTER" layoutX="104.0" layoutY="125.0" text="Price" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="148.0" layoutY="324.0" prefHeight="35.0" prefWidth="139.0" text="Description" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="553.0" layoutY="324.0" text="Image">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="75.0" layoutY="233.0" prefHeight="35.0" prefWidth="124.0" text="Availability" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="availFromAdd" layoutX="219.0" layoutY="235.0" prefHeight="31.0" prefWidth="181.0" />
+      <DatePicker fx:id="availToAdd" layoutX="425.0" layoutY="235.0" prefHeight="31.0" prefWidth="181.0" />
+      <Label alignment="CENTER" layoutX="267.0" layoutY="183.0" prefHeight="35.0" prefWidth="85.0" text="From" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="490.0" layoutY="183.0" prefHeight="35.0" prefWidth="52.0" text="To" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="descriptAdd" layoutX="49.0" layoutY="401.0" prefHeight="227.0" prefWidth="325.0" />
+      <Button fx:id="backButton" alignment="CENTER" layoutX="645.0" layoutY="691.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="114.0" text="BACK">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <BorderPane fx:id="layout" layoutX="424.0" layoutY="401.0" prefHeight="227.0" prefWidth="325.0">
+         <center>
+            <StackPane fx:id="contentPane" prefHeight="227.0" prefWidth="325.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="imageView" fitHeight="227.0" fitWidth="325.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

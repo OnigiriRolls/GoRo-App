@@ -30,4 +30,13 @@ public class AdminMenuController {
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
+
+    public void handleAddAttraction() throws IOException {
+        Stage primaryStage = null;
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("TouristAttractionList.fxml"));
+        primaryStage.setTitle("Modify Attraction");
+        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.show();
+
+    }
 }
