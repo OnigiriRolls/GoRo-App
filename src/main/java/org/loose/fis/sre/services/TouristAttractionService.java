@@ -29,7 +29,14 @@ public class TouristAttractionService {
     }
 
     public static void saveChanges(String title, String photoTitle, String availability, String description, float price){
-        attractionsRepository.insert(new TouristAttractions(title, photoTitle, availability, description, price));
+        TouristAttractions toChange = getTAByTitle(title);
+        toChange.setTitle(title);
+        toChange.setAvailability(availability);
+        toChange.setDescription(description);
+        toChange.setPhotoTitle(photoTitle);
+        toChange.setPrice(price);
+
+        attractionsRepository.update(toChange);
     }
 
     public static void deleteAttraction(String title){
@@ -67,12 +74,4 @@ public class TouristAttractionService {
 
         return title;
     }
-/*
-    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException, PasswordNotOkException {
-        checkUserDoesNotAlreadyExist(username);
-        checkPassword(password);
-        userRepository.insert(new User(username, encodePassword(username, password), role));
-    }
-
- */
 }

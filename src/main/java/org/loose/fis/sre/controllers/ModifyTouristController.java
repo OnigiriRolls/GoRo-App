@@ -132,10 +132,10 @@ public class ModifyTouristController {
     }
 
     public void handleModify() {
-        String availFrom = String.valueOf(availFromModify.getValue().getDayOfMonth())
-                + availFromModify.getValue().getMonth() + availFromModify.getValue().getYear();
-        String availTo = String.valueOf(availToModify.getValue().getDayOfMonth())
-                + availToModify.getValue().getMonth() + availToModify.getValue().getYear();
+        String availFrom =availFromModify.getValue().getDayOfMonth()
+                + "." + availFromModify.getValue().getMonth() + "." + availFromModify.getValue().getYear();
+        String availTo = availToModify.getValue().getDayOfMonth()
+                + "." + availToModify.getValue().getMonth() + "." + availToModify.getValue().getYear();
         String avail = availFrom+";"+availTo;
 
         TouristAttractionService.addPhoto(photoModify);
