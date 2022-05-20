@@ -42,7 +42,7 @@ public class TouristAttractionListController {
     }
 
     public void handleDeleteAttraction() {
-        if (!data.isEmpty()) {
+        if (!data.isEmpty() && attractionsListView.getSelectionModel().getSelectedItem()!=null) {
             int selectedIdx = attractionsListView.getSelectionModel().getSelectedIndex();
 
             TouristAttractionService.deleteAttraction(attractionsListView.getSelectionModel().getSelectedItem().toString());
@@ -51,7 +51,7 @@ public class TouristAttractionListController {
     }
 
     public void handleModifyAttraction(javafx.event.ActionEvent actionEvent) throws IOException {
-        if(!data.isEmpty()) {
+        if(!data.isEmpty() && attractionsListView.getSelectionModel().getSelectedItem()!=null) {
             //800 800
             root = FXMLLoader.load(getClass().getClassLoader().getResource("ModifyTourist.fxml"));
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
