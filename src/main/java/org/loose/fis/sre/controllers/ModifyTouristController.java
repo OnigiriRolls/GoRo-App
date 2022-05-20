@@ -6,6 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.loose.fis.sre.exceptions.TAAlreadyExistsException;
+import org.loose.fis.sre.services.ModificationsService;
 import org.loose.fis.sre.services.TouristAttractionService;
 
 import javafx.application.Platform;
@@ -154,6 +156,19 @@ public class ModifyTouristController {
             //TouristAttractionService.addPhoto(photoModify);
             TouristAttractionService.saveChanges(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
         }
+
+        //adaugare modificare atractie turistica
+        String avail = null;
+        if (titleModify.getText()!="" && TouristAttractionService.getPhotoTitle(photoModify)!=""
+                && availFromModify!=null && availToModify!=null && descriptModify.getText()!=""
+                && priceModify.getText()!="") {
+            String availFrom = availFromModify.getValue().getDayOfMonth()
+                    + "." + availFromModify.getValue().getMonth() + "." + availFromModify.getValue().getYear();
+            String availTo = availToModify.getValue().getDayOfMonth()
+                    + "." + availToModify.getValue().getMonth() + "." + availToModify.getValue().getYear();
+            avail = availFrom + ";" + availTo;
+        }
+        ModificationsService.addModification(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
     }
 
     public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {

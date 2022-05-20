@@ -1,9 +1,11 @@
 package org.loose.fis.sre.controllers;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,6 +17,7 @@ public class ClientMenuController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
 
     @FXML
     public void handleMenuAction() throws Exception{
@@ -33,4 +36,5 @@ public class ClientMenuController {
         stage.setScene(scene);
         stage.show();
     }
+
 }

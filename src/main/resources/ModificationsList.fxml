@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.TouristAttractionListController">
+   <children>
+      <ListView fx:id="attractionsListView" editable="true" layoutX="60.0" layoutY="140.0" prefHeight="350.0" prefWidth="480.0" />
+      <Label alignment="CENTER" layoutX="145.0" layoutY="37.0" prefHeight="54.0" prefWidth="310.0" text="Modifications">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <ButtonBar layoutX="377.0" layoutY="519.0" prefHeight="54.0" prefWidth="178.0" />
+   </children>
+</AnchorPane>
