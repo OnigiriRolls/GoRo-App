@@ -33,6 +33,19 @@ public class UserService {
 
         attractionsRepository = database.getRepository(TouristAttractions.class);
         requestsRepository = database.getRepository(Request.class);
+
+        findLastRequestId();
+    }
+
+    private static void findLastRequestId(){
+        if(requestsRepository!=null) {
+            for (Request request : requestsRepository.find()) {
+                Request.nr = request.getRequestID();
+            }
+            return;
+        }
+
+        Request.nr=0;
     }
 
     public static void printUsers(){

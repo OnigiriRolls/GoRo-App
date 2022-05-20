@@ -72,6 +72,13 @@ public class RegistrationController {
                 stage.setScene(scene);
                 stage.show();
             }
+            else {
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("clientMenu.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
 
         } catch (UserDoesNotExistException e){
             registrationMessage.setText(e.getMessage());
