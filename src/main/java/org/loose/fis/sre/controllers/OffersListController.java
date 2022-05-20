@@ -7,9 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 import org.loose.fis.sre.model.Offers;
-import org.loose.fis.sre.model.TouristAttractions;
 import org.loose.fis.sre.services.OfferService;
-import org.loose.fis.sre.services.TouristAttractionService;
 
 public class OffersListController {
     @FXML
