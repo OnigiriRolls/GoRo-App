@@ -10,7 +10,7 @@ public class ClientMenuController {
     @FXML
     public void handleMenuAction() throws Exception{
         Stage  primaryStage = null;
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("clientMenuO&A.fxml"));
         primaryStage.setTitle("Menu");
         primaryStage.setScene(new Scene(root, 500, 400));
         primaryStage.show();
