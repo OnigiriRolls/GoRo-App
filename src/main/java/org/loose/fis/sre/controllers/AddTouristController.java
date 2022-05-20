@@ -1,17 +1,14 @@
 package org.loose.fis.sre.controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-import org.loose.fis.sre.services.TouristAttractionService;
-
-import javafx.application.Platform;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -22,18 +19,21 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import org.loose.fis.sre.exceptions.TAAlreadyExistsException;
+import org.loose.fis.sre.model.TouristAttractions;
+import org.loose.fis.sre.model.User;
+import org.loose.fis.sre.services.TouristAttractionService;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ModifyTouristController {
+public class AddTouristController {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -45,17 +45,19 @@ public class ModifyTouristController {
     @FXML
     BorderPane layout;
     @FXML
-    private DatePicker availFromModify;
+    private DatePicker availFromAdd;
     @FXML
-    private DatePicker availToModify;
+    private DatePicker availToAdd;
     @FXML
-    private TextField titleModify;
+    private TextField titleAdd;
     @FXML
-    private TextField priceModify;
+    private TextField priceAdd;
     @FXML
-    private TextArea descriptModify;
+    private TextArea descriptAdd;
+    @FXML
+    private Text addMessage;
 
-    private String photoModify;
+    private String photoAdd;
 
     public void initialize() {
 
@@ -101,7 +103,7 @@ public class ModifyTouristController {
                 @Override
                 public void run() {
                     System.out.println(file.getAbsolutePath());
-                    photoModify = file.getAbsolutePath();
+                    photoAdd = file.getAbsolutePath();
 
                     try {
                         if (!contentPane.getChildren().isEmpty()) {
@@ -140,25 +142,29 @@ public class ModifyTouristController {
         }
     }
 
-    public void handleModify() {
-        if (titleModify.getText()!="" && TouristAttractionService.getPhotoTitle(photoModify)!=""
-                && availFromModify!=null && availToModify!=null && descriptModify.getText()!=""
-        && priceModify.getText()!="")
-        {
-            String availFrom = availFromModify.getValue().getDayOfMonth()
-                    + "." + availFromModify.getValue().getMonth() + "." + availFromModify.getValue().getYear();
-            String availTo = availToModify.getValue().getDayOfMonth()
-                    + "." + availToModify.getValue().getMonth() + "." + availToModify.getValue().getYear();
+    public void handleAddAttraction() {
+        if (titleAdd.getText()!="" && TouristAttractionService.getPhotoTitle(photoAdd)!=""
+                && availFromAdd!=null && availToAdd!=null && descriptAdd.getText()!=""
+                && priceAdd.getText()!="") {
+            String availFrom = availFromAdd.getValue().getDayOfMonth()
+                    + "." + availFromAdd.getValue().getMonth() + "." + availFromAdd.getValue().getYear();
+            String availTo = availToAdd.getValue().getDayOfMonth()
+                    + "." + availToAdd.getValue().getMonth() + "." + availToAdd.getValue().getYear();
             String avail = availFrom + ";" + availTo;
 
-            //TouristAttractionService.addPhoto(photoModify);
-            TouristAttractionService.saveChanges(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
+            //TouristAttractionService.addPhoto(photoAdd);
+            try {
+                TouristAttractionService.checkTADoesNotAlreadyExist(titleAdd.getText());
+                TouristAttractionService.addTouristAttraction(titleAdd.getText(), TouristAttractionService.getPhotoTitle(photoAdd), avail, descriptAdd.getText(), Integer.valueOf(priceAdd.getText()));
+                addMessage.setText("Atractie Turistica adaugata!");
+            } catch (TAAlreadyExistsException e) {
+                addMessage.setText(e.getMessage());
+            }
         }
     }
-
     public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
         //600 600
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("TouristAttractionList.fxml"));
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("adminMenu.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
