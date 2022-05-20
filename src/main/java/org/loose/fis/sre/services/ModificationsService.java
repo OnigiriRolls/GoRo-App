@@ -18,6 +18,6 @@ public class ModificationsService {
     }
 
     public static void addModification(String title, String photo, String details, String text, Integer integer) {
-        modificationsRepository.insert(new Modifications(title,photo,details));
+        modificationsRepository.insert(new Modifications(title,photo,details,text,integer));
     }
 }
