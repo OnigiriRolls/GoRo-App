@@ -4,11 +4,26 @@ import org.dizitart.no2.objects.Id;
 
 public class Request {
     @Id
+    private int requestID;
     private String completeName;
     private String titleTA;
     private String email;
     private String address;
     private String phone;
+    private String titleAttraction;
+
+    public static int nr;
+
+    public Request(String completeName, String titleTA, String email, String address, String phone, String titleAttraction){
+        this.completeName=completeName;
+        this.titleTA=titleTA;
+        this.email=email;
+        this.address=address;
+        this.phone=phone;
+        this.titleAttraction=titleAttraction;
+        nr++;
+        requestID=nr;
+    }
 
     public void setCompleteName(String completeName) {
         this.completeName = completeName;

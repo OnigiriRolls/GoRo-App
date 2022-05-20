@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.loose.fis.sre.exceptions.UncompletedBuyException;
+import org.loose.fis.sre.model.Request;
+import org.loose.fis.sre.services.UserService;
 
 import java.io.IOException;
 
@@ -34,7 +36,9 @@ public class BuyTicketController {
     public void handleBuyTicket(ActionEvent actionEvent) {
         try{
             checkInfo();
-            //create request
+            String completeName=nameText.getText()+surnameText.getText();
+            //introdus titlul atractiei
+            //UserService.requestsRepository.insert(new Request(completeName,,emailText.getText(),addressText.getText(),phoneText.getText()));
         }catch (UncompletedBuyException e){
             addMessage.setText(e.getMessage());
         }
