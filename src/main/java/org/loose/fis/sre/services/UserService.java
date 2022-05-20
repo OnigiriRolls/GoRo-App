@@ -6,6 +6,7 @@ import org.loose.fis.sre.exceptions.PasswordNotOkException;
 import org.loose.fis.sre.exceptions.UserDoesNotExistException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.exceptions.WrongPasswordException;
+import org.loose.fis.sre.model.TouristAttractions;
 import org.loose.fis.sre.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -17,6 +18,8 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class UserService {
 
+    public static ObjectRepository<TouristAttractions> attractionsRepository;
+
     private static ObjectRepository<User> userRepository;
 
     public static void initDatabase() {
@@ -25,6 +28,8 @@ public class UserService {
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
+
+        attractionsRepository = database.getRepository(TouristAttractions.class);
     }
 
     public static void printUsers(){
