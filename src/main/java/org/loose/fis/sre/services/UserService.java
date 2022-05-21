@@ -13,6 +13,7 @@ import org.loose.fis.sre.model.User;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 
 import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
@@ -48,6 +49,11 @@ public class UserService {
         Request.nr=0;
     }
 
+    //adaugat la testare
+    public static List<User> getAllUsers() {
+        return userRepository.find().toList();
+    }
+
     public static void printUsers(){
         org.dizitart.no2.objects.Cursor<User> cursor = userRepository.find();
 
@@ -68,7 +74,7 @@ public class UserService {
         }
     }
 
-    private static void checkPassword(String password) throws PasswordNotOkException{
+    public static void checkPassword(String password) throws PasswordNotOkException{
         if(password.length()<4)
             throw new PasswordNotOkException();
         int nr=0;
