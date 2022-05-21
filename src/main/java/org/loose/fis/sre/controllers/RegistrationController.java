@@ -45,14 +45,17 @@ public class RegistrationController {
     @FXML
     public void handleRegisterAction() {
         rule1.setText("");
-
-        try {
-            UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
-            registrationMessage.setText("Account created successfully!");
-        } catch (UsernameAlreadyExistsException e) {
-            registrationMessage.setText(e.getMessage());
-        } catch (PasswordNotOkException e){
-            registrationMessage.setText(e.getMessage());
+        if(role.getValue()==null)
+            registrationMessage.setText("Enter role!");
+        else {
+            try {
+                UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
+                registrationMessage.setText("Account created successfully!");
+            } catch (UsernameAlreadyExistsException e) {
+                registrationMessage.setText(e.getMessage());
+            } catch (PasswordNotOkException e) {
+                registrationMessage.setText(e.getMessage());
+            }
         }
     }
 
