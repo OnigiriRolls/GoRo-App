@@ -53,6 +53,7 @@ public class TouristAttractionListController {
     public void handleModifyAttraction(javafx.event.ActionEvent actionEvent) throws IOException {
         if(!data.isEmpty() && attractionsListView.getSelectionModel().getSelectedItem()!=null) {
             //800 800
+            TouristAttractionService.selectedTitle=attractionsListView.getSelectionModel().getSelectedItem().toString();
             root = FXMLLoader.load(getClass().getClassLoader().getResource("ModifyTourist.fxml"));
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);

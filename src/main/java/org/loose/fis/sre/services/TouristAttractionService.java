@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 import java.util.StringTokenizer;
 
@@ -19,15 +20,17 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class TouristAttractionService {
 
-    public static void saveChanges(String title, String photoTitle, String availability, String description, float price){
-        TouristAttractions toChange = getTAByTitle(title);
-        toChange.setTitle(title);
-        toChange.setAvailability(availability);
-        toChange.setDescription(description);
-        toChange.setPhotoTitle(photoTitle);
-        toChange.setPrice(price);
+    public static String selectedTitle;
 
-        UserService.attractionsRepository.update(toChange);
+    public static void saveChanges(String title, String photoTitle, String availability, String description, float price) {
+        if (selectedTitle != "") {
+            deleteAttraction(selectedTitle);
+            addTouristAttraction(title,photoTitle,availability,description,price);
+        }
+    }
+
+    public static List<TouristAttractions> getAllUsers() {
+        return UserService.attractionsRepository.find().toList();
     }
 
     public static void deleteAttraction(String title){

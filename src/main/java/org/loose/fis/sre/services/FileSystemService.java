@@ -12,12 +12,15 @@ public class FileSystemService {
     public static Path getPathToFile(String... path) {
         return APPLICATION_HOME_PATH.resolve(Paths.get(".", path));
     }
+
+    //adaugat la testare
     public static Path getApplicationHomeFolder() {
         return Paths.get(USER_FOLDER, APPLICATION_FOLDER);
     }
-    public static void initDirectory() {
+
+    public  static void initDirectory() {
         Path applicationHomePath = getApplicationHomeFolder();
-        if(!Files.exists(applicationHomePath))
+        if (!Files.exists(applicationHomePath))
             applicationHomePath.toFile().mkdirs();
     }
 }

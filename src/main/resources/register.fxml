@@ -1,42 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" prefHeight="400" prefWidth="600"
-          vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal"
-          fx:controller="org.loose.fis.sre.controllers.RegistrationController">
+<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.RegistrationController">
     <padding>
-        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
     </padding>
 
-    <Text id="title-text" text="Go-Ro App" GridPane.columnIndex="0" GridPane.columnSpan="2"
-          GridPane.rowIndex="0"/>
-
-    <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-
-    <TextField fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-
-    <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-
-    <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-
-    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+   <children>
+   
+       <Text id="title-text" text="Go-Ro App" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+   
+       <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+   
+       <TextField id="username" fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   
+       <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+   
+       <PasswordField id="password" fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   
+       <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+   
+       <ChoiceBox id="role" fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
     </ChoiceBox>
-
-    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-
-    <HBox alignment="BOTTOM_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
-    <Text fx:id="rule1" text="The password must have at least 4 characters and 1 upper case letter!"/>
-    </HBox>
-
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
-        <Button onAction="#handleRegisterAction" text="Register"  fx:id="registerButton"/>
-        <Button onAction="#handleLogInAction" text="Log In" />
-    </HBox>
+   
+       <Text id="registrationMessage" fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+   
+       <HBox alignment="BOTTOM_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <children>
+          <Text fx:id="rule1" text="The password must have at least 4 characters and 1 upper case letter!" />
+      </children>
+       </HBox>
+   
+       <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <children>
+              <Button id="registerButton" onAction="#handleRegisterAction" text="Register" />
+              <Button onAction="#handleLogInAction" text="Log In" />
+      </children>
+       </HBox>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 
 </GridPane>
