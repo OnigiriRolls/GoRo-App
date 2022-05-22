@@ -13,6 +13,7 @@ import org.loose.fis.sre.model.User;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 
 import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
@@ -24,8 +25,10 @@ public class UserService {
 
     private static ObjectRepository<User> userRepository;
 
+    private static Nitrite database;
+
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+        database = Nitrite.builder()
                 .filePath(getPathToFile("registration-example.db").toFile())
                 .openOrCreate("test", "test");
 
@@ -37,6 +40,10 @@ public class UserService {
         findLastRequestId();
     }
 
+    public static void closeDatabase(){
+        database.close();
+    }
+
     private static void findLastRequestId(){
         if(requestsRepository!=null) {
             for (Request request : requestsRepository.find()) {
@@ -46,6 +53,11 @@ public class UserService {
         }
 
         Request.nr=0;
+    }
+
+    //adaugat la testare
+    public static List<User> getAllUsers() {
+        return userRepository.find().toList();
     }
 
     public static void printUsers(){
@@ -68,7 +80,7 @@ public class UserService {
         }
     }
 
-    private static void checkPassword(String password) throws PasswordNotOkException{
+    public static void checkPassword(String password) throws PasswordNotOkException{
         if(password.length()<4)
             throw new PasswordNotOkException();
         int nr=0;

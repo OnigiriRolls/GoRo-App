@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.loose.fis.sre.exceptions.TAAlreadyExistsException;
 import org.loose.fis.sre.services.ModificationsService;
@@ -56,6 +57,8 @@ public class ModifyTouristController {
     private TextField priceModify;
     @FXML
     private TextArea descriptModify;
+    @FXML
+    private Text modifyMessage;
 
     private String photoModify;
 
@@ -102,7 +105,7 @@ public class ModifyTouristController {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println(file.getAbsolutePath());
+
                     photoModify = file.getAbsolutePath();
 
                     try {
@@ -143,9 +146,9 @@ public class ModifyTouristController {
     }
 
     public void handleModify() {
-        if (titleModify.getText()!="" && TouristAttractionService.getPhotoTitle(photoModify)!=""
-                && availFromModify!=null && availToModify!=null && descriptModify.getText()!=""
-        && priceModify.getText()!="")
+        if (titleModify.getText()!="" && photoModify!=null
+                && availFromModify!=null && availToModify!=null && descriptModify!=null
+        && priceModify!=null)
         {
             String availFrom = availFromModify.getValue().getDayOfMonth()
                     + "." + availFromModify.getValue().getMonth() + "." + availFromModify.getValue().getYear();
@@ -155,20 +158,26 @@ public class ModifyTouristController {
 
             //TouristAttractionService.addPhoto(photoModify);
             TouristAttractionService.saveChanges(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
+            modifyMessage.setText("Tourist Attraction modified!");
+        }
+        else {
+            modifyMessage.setText("Empty fields!");
+            return;
         }
 
         //adaugare modificare atractie turistica
         String avail = null;
-        if (titleModify.getText()!="" && TouristAttractionService.getPhotoTitle(photoModify)!=""
-                && availFromModify!=null && availToModify!=null && descriptModify.getText()!=""
-                && priceModify.getText()!="") {
+        if (titleModify.getText()!="" && photoModify!=null
+                && availFromModify!=null && availToModify!=null && descriptModify!=null
+                && priceModify!=null) {
             String availFrom = availFromModify.getValue().getDayOfMonth()
                     + "." + availFromModify.getValue().getMonth() + "." + availFromModify.getValue().getYear();
             String availTo = availToModify.getValue().getDayOfMonth()
                     + "." + availToModify.getValue().getMonth() + "." + availToModify.getValue().getYear();
             avail = availFrom + ";" + availTo;
+
+            ModificationsService.addModification(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
         }
-        ModificationsService.addModification(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
     }
 
     public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
