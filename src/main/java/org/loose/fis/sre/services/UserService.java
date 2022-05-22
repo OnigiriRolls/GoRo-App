@@ -25,8 +25,10 @@ public class UserService {
 
     private static ObjectRepository<User> userRepository;
 
+    private static Nitrite database;
+
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+        database = Nitrite.builder()
                 .filePath(getPathToFile("registration-example.db").toFile())
                 .openOrCreate("test", "test");
 
@@ -36,6 +38,10 @@ public class UserService {
         requestsRepository = database.getRepository(Request.class);
 
         findLastRequestId();
+    }
+
+    public static void closeDatabase(){
+        database.close();
     }
 
     private static void findLastRequestId(){
