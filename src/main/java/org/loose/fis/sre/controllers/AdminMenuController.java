@@ -46,4 +46,13 @@ public class AdminMenuController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void handleLogOut(javafx.event.ActionEvent actionEvent) throws IOException {
+        //600 600
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
