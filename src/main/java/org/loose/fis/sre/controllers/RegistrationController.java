@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -22,6 +23,9 @@ import java.net.http.WebSocketHandshakeException;
 
 public class RegistrationController {
 
+    public TextField username;
+    public PasswordField password;
+    public Button registerButton;
     @FXML
     private Text registrationMessage;
     @FXML

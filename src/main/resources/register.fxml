@@ -12,35 +12,37 @@
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
     </padding>
+
    <children>
-   
+
        <Text id="title-text" text="Go-Ro App" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-   
+
        <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-   
+
        <TextField id="username" fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-   
+
        <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-   
+
        <PasswordField id="password" fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-   
+
        <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-   
+
        <ChoiceBox id="role" fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
     </ChoiceBox>
-   
+
        <Text id="registrationMessage" fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-   
+       <Text id="loginMessage" fx:id="loginMessage" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
        <HBox alignment="BOTTOM_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
       <children>
           <Text fx:id="rule1" text="The password must have at least 4 characters and 1 upper case letter!" />
       </children>
        </HBox>
-   
+
        <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
       <children>
               <Button id="registerButton" onAction="#handleRegisterAction" text="Register" />
-              <Button onAction="#handleLogInAction" text="Log In" />
+              <Button id="loginButton" onAction="#handleLogInAction" text="Log In" />
       </children>
        </HBox>
    </children>

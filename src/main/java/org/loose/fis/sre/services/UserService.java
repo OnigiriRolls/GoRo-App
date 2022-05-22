@@ -55,10 +55,6 @@ public class UserService {
         Request.nr=0;
     }
 
-    //adaugat la testare
-    public static List<User> getAllUsers() {
-        return userRepository.find().toList();
-    }
 
     public static void printUsers(){
         org.dizitart.no2.objects.Cursor<User> cursor = userRepository.find();
@@ -91,7 +87,7 @@ public class UserService {
             throw new PasswordNotOkException();
     }
 
-    private static String encodePassword(String salt, String password) {
+    public static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
@@ -125,5 +121,9 @@ public class UserService {
         for (User user : userRepository.find()) {
             if (!(Objects.equals(username, user.getUsername()))) throw new WrongPasswordException();
         }
+    }
+
+    public static List<User> getAllUsers() {
+        return userRepository.find().toList();
     }
 }
