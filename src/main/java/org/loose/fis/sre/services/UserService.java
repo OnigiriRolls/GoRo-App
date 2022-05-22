@@ -55,10 +55,6 @@ public class UserService {
         Request.nr=0;
     }
 
-    //adaugat la testare
-    public static List<User> getAllUsers() {
-        return userRepository.find().toList();
-    }
 
     public static void printUsers(){
         org.dizitart.no2.objects.Cursor<User> cursor = userRepository.find();
