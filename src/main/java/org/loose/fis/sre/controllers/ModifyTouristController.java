@@ -147,8 +147,8 @@ public class ModifyTouristController {
 
     public void handleModify() {
         if (titleModify.getText()!="" && TouristAttractionService.getPhotoTitle(photoModify)!=""
-                && availFromModify!=null && availToModify!=null && descriptModify.getText()!=""
-        && priceModify.getText()!="")
+                && availFromModify!=null && availToModify!=null && descriptModify!=null
+        && priceModify!=null)
         {
             String availFrom = availFromModify.getValue().getDayOfMonth()
                     + "." + availFromModify.getValue().getMonth() + "." + availFromModify.getValue().getYear();
