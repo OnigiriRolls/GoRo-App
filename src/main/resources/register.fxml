@@ -17,11 +17,11 @@
 
     <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
-    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <TextField fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
     <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
 
-    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
     <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
 
@@ -35,7 +35,7 @@
     </HBox>
 
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
-        <Button onAction="#handleRegisterAction" text="Register"/>
+        <Button onAction="#handleRegisterAction" text="Register"  fx:id="registerButton"/>
         <Button onAction="#handleLogInAction" text="Log In" />
     </HBox>
 
