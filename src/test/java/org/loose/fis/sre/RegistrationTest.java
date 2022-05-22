@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,6 +45,11 @@ class RegistrationTest {
         primaryStage.setTitle("Registration Example");
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        UserService.closeDatabase();
     }
 
     @Test

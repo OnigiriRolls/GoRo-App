@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,8 +35,13 @@ public class TouristAttractionModifyTest {
     void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ModifyTourist.fxml"));
         primaryStage.setTitle("Registration Example");
-        primaryStage.setScene(new Scene(root, 800, 800));
+        primaryStage.setScene(new Scene(root, 800, 750));
         primaryStage.show();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        UserService.closeDatabase();
     }
 
     @Test
@@ -65,6 +71,5 @@ public class TouristAttractionModifyTest {
 
         // robot.clickOn("#addButton");
         // assertThat(robot.lookup("#addMessage").queryText()).hasText("Tourist Attraction already exists! Create a new one!");
-
     }
 }

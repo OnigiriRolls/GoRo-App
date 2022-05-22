@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,6 +44,11 @@ public class TouristAttractionAddTest {
         primaryStage.show();
     }
 
+    @AfterEach
+    public void tearDown() {
+        UserService.closeDatabase();
+    }
+
     @Test
     void testTAAdding(FxRobot robot) {
         robot.clickOn("#titleAdd");
@@ -67,6 +73,5 @@ public class TouristAttractionAddTest {
 
       //  robot.clickOn("#addButton");
        // assertThat(robot.lookup("#addMessage").queryText()).hasText("Tourist Attraction already exists! Create a new one!");
-
     }
 }

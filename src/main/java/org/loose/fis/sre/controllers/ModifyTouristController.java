@@ -146,7 +146,7 @@ public class ModifyTouristController {
     }
 
     public void handleModify() {
-        if (titleModify.getText()!="" && TouristAttractionService.getPhotoTitle(photoModify)!=""
+        if (titleModify.getText()!="" && photoModify!=null
                 && availFromModify!=null && availToModify!=null && descriptModify!=null
         && priceModify!=null)
         {
@@ -160,20 +160,24 @@ public class ModifyTouristController {
             TouristAttractionService.saveChanges(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
             modifyMessage.setText("Tourist Attraction modified!");
         }
-        else modifyMessage.setText("Empty fields!");
+        else {
+            modifyMessage.setText("Empty fields!");
+            return;
+        }
 
         //adaugare modificare atractie turistica
         String avail = null;
-        if (titleModify.getText()!="" && TouristAttractionService.getPhotoTitle(photoModify)!=""
-                && availFromModify!=null && availToModify!=null && descriptModify.getText()!=""
-                && priceModify.getText()!="") {
+        if (titleModify.getText()!="" && photoModify!=null
+                && availFromModify!=null && availToModify!=null && descriptModify!=null
+                && priceModify!=null) {
             String availFrom = availFromModify.getValue().getDayOfMonth()
                     + "." + availFromModify.getValue().getMonth() + "." + availFromModify.getValue().getYear();
             String availTo = availToModify.getValue().getDayOfMonth()
                     + "." + availToModify.getValue().getMonth() + "." + availToModify.getValue().getYear();
             avail = availFrom + ";" + availTo;
+
+            ModificationsService.addModification(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
         }
-        ModificationsService.addModification(titleModify.getText(), TouristAttractionService.getPhotoTitle(photoModify), avail, descriptModify.getText(), Integer.valueOf(priceModify.getText()));
     }
 
     public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
