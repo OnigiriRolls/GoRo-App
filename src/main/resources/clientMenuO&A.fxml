@@ -17,6 +17,7 @@
             </Text>
             <Button layoutX="200.0" layoutY="211.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="Tourist Attractions" textAlignment="CENTER" />
             <Button layoutX="200.0" layoutY="146.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="Offers" textAlignment="CENTER" />
+            <Button layoutX="200.0" layoutY="509.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="Back" textAlignment="CENTER" />
          </children>
       </Pane>
    </children>

@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.EventObject;
 
 
 public class ClientMenuController {
@@ -45,9 +46,19 @@ public class ClientMenuController {
         stage.show();
     }
 
-    public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
-        //600 600
+  
+    @FXML
+    public void handleMenuAction() throws Exception{
+        Stage  primaryStage = null;
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("clientMenuO&A.fxml"));
+        primaryStage.setTitle("Menu");
+        primaryStage.setScene(new Scene(root, 500, 400));
+        primaryStage.show();
+    
+
+   
         root = FXMLLoader.load(getClass().getClassLoader().getResource("clientMenu.fxml"));
+        EventObject actionEvent = null;
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
