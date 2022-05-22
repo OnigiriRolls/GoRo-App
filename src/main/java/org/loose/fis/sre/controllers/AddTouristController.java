@@ -58,7 +58,7 @@ public class AddTouristController {
     private Text addMessage;
 
     private String photoAdd;
-
+    
     public void initialize() {
 
         contentPane.setOnDragOver(new EventHandler() {
@@ -143,9 +143,9 @@ public class AddTouristController {
     }
 
     public void handleAddAttraction() {
-        if (titleAdd.getText()!="" && TouristAttractionService.getPhotoTitle(photoAdd)!=""
-                && availFromAdd!=null && availToAdd!=null && descriptAdd.getText()!=""
-                && priceAdd.getText()!="") {
+        if (titleAdd!=null && photoAdd!=null
+                && availFromAdd!=null && availToAdd!=null && descriptAdd!=null
+                && priceAdd!=null) {
             String availFrom = availFromAdd.getValue().getDayOfMonth()
                     + "." + availFromAdd.getValue().getMonth() + "." + availFromAdd.getValue().getYear();
             String availTo = availToAdd.getValue().getDayOfMonth()
@@ -155,12 +155,13 @@ public class AddTouristController {
             //TouristAttractionService.addPhoto(photoAdd);
             try {
                 TouristAttractionService.checkTADoesNotAlreadyExist(titleAdd.getText());
-                TouristAttractionService.addTouristAttraction(titleAdd.getText(), TouristAttractionService.getPhotoTitle(photoAdd), avail, descriptAdd.getText(), Integer.valueOf(priceAdd.getText()));
-                addMessage.setText("Atractie Turistica adaugata!");
+                TouristAttractionService.addTouristAttraction(titleAdd.getText(), TouristAttractionService.getPhotoTitle(photoAdd),
+                        avail, descriptAdd.getText(), Integer.valueOf(priceAdd.getText()));
+                addMessage.setText("Tourist Attraction added!");
             } catch (TAAlreadyExistsException e) {
                 addMessage.setText(e.getMessage());
             }
-        }
+        } else addMessage.setText("Empty fields!");
     }
     public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
         //600 600
