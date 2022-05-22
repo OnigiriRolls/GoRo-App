@@ -20,13 +20,23 @@ public class AdminMenuController {
     private Parent root;
 
 
-    @FXML
-    public void handleAddOfferAction() throws Exception{
-        Stage primaryStage = null;
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("addOffer.fxml"));
-        primaryStage.setTitle("Add Offer");
-        primaryStage.setScene(new Scene(root, 500, 400));
-        primaryStage.show();
+
+    public void handleAddOffer(javafx.event.ActionEvent actionEvent) throws IOException {
+        //600 600
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("addOffer.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void handleModifyOffer(javafx.event.ActionEvent actionEvent) throws IOException {
+        //600 600
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("modifyOffer.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void handleModifyAttraction(javafx.event.ActionEvent actionEvent) throws IOException {

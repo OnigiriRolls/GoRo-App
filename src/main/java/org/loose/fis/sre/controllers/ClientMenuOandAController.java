@@ -13,14 +13,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class ClientMenuController {
+public class ClientMenuOandAController {
     private Stage stage;
     private Scene scene;
     private Parent root;
 
 
-    public void handleMenu(javafx.event.ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("clientMenuO&A.fxml"));
+    public void handleOffers(javafx.event.ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("OffersListForClient.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -28,17 +28,8 @@ public class ClientMenuController {
     }
 
 
-    public void handleBuy(javafx.event.ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("buyTicketList.fxml"));
-        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void handleLogOut(javafx.event.ActionEvent actionEvent) throws IOException {
-        //600 600
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
+    public void handleAttractions(javafx.event.ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("AttractionListForClient.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -47,7 +38,7 @@ public class ClientMenuController {
 
     public void handleBack(javafx.event.ActionEvent actionEvent) throws IOException {
         //600 600
-        root = FXMLLoader.load(getClass().getClassLoader().getResource("clientMenu.fxml"));
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("clientMenuO&A.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

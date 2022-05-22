@@ -17,11 +17,11 @@
             </Text>
             <Button layoutX="200.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleModifyAttraction" prefHeight="48.0" prefWidth="200.0" text="Modify Tourist Attractions" textAlignment="CENTER" />
             <Button layoutX="200.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleAddAttraction" prefHeight="48.0" prefWidth="200.0" text="Add Tourist Attraction" textAlignment="CENTER" />
-            <Button layoutX="200.0" layoutY="252.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="Add Offer" textAlignment="CENTER" />
+            <Button layoutX="200.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleAddOffer" prefHeight="48.0" prefWidth="200.0" text="Add Offer" textAlignment="CENTER" />
             <Button layoutX="200.0" layoutY="444.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="History of Modifications" textAlignment="CENTER" />
             <Button layoutX="200.0" layoutY="383.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="List of Requests" textAlignment="CENTER" />
-            <Button layoutX="200.0" layoutY="316.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="Modify Offers" textAlignment="CENTER" />
-            <Button layoutX="200.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleModifyAttraction" prefHeight="48.0" prefWidth="200.0" text="Log Out" textAlignment="CENTER" />
+            <Button layoutX="200.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleModifyOffer" prefHeight="48.0" prefWidth="200.0" text="Modify Offers" textAlignment="CENTER" />
+            <Button layoutX="200.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleLogOut" prefHeight="48.0" prefWidth="200.0" text="Log Out" textAlignment="CENTER" />
          </children>
       </Pane>
    </children>
