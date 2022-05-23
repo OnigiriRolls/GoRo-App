@@ -19,7 +19,7 @@
             </Text>
             <Button onAction="#handleModifyAttraction" layoutX="200.0" layoutY="211.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="Modify Tourist Attractions" textAlignment="CENTER" />
             <Button onAction="#handleAddAttraction" layoutX="200.0" layoutY="146.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="Add Tourist Attraction" textAlignment="CENTER" />
-            <Button layoutX="200.0" layoutY="278.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="Add Offer" textAlignment="CENTER" />
+            <Button onAction="#handleAddOffer" layoutX="200.0" layoutY="278.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="Add Offer" textAlignment="CENTER" />
             <Button layoutX="200.0" layoutY="482.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="History of Modifications" textAlignment="CENTER" />
             <Button layoutX="200.0" layoutY="417.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="List of Requests" textAlignment="CENTER" />
             <Button layoutX="200.0" layoutY="348.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" text="Modify Offers" textAlignment="CENTER" />

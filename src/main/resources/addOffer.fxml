@@ -51,7 +51,7 @@
       </Button>
       <TextField prefHeight="39.0" prefWidth="274.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextField prefHeight="62.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddOffer" prefHeight="40.0" prefWidth="194.0" text="Back" GridPane.rowIndex="4">
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBack" prefHeight="40.0" prefWidth="194.0" text="Back" GridPane.rowIndex="4">
          <font>
             <Font size="18.0" />
          </font>
