@@ -20,14 +20,27 @@ public class AdminMenuController {
     private Parent root;
 
 
+
     public void handleAddOffer(javafx.event.ActionEvent actionEvent) throws IOException{
+
         root = FXMLLoader.load(getClass().getClassLoader().getResource("addOffer.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
 
+    }
+/*
+    public void handleModifyOffer(javafx.event.ActionEvent actionEvent) throws IOException {
+        //600 600
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("modifyOffer.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+ */
     public void handleModifyAttraction(javafx.event.ActionEvent actionEvent) throws IOException {
         //600 600
         root = FXMLLoader.load(getClass().getClassLoader().getResource("TouristAttractionList.fxml"));
@@ -40,6 +53,15 @@ public class AdminMenuController {
     public void handleAddAttraction(javafx.event.ActionEvent actionEvent) throws IOException {
         //600 600
         root = FXMLLoader.load(getClass().getClassLoader().getResource("addAttraction.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void handleLogOut(javafx.event.ActionEvent actionEvent) throws IOException {
+        //600 600
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

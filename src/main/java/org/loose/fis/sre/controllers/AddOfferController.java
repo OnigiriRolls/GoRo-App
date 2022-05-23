@@ -21,6 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import org.jetbrains.annotations.NotNull;
 import org.loose.fis.sre.model.Offers;
 import org.loose.fis.sre.model.User;
@@ -78,6 +79,7 @@ public class AddOfferController {
 
         layout.setCenter(contentPane);
     }
+
 
     void addImage(Image i, @NotNull StackPane pane) {
         imageView.setImage(i);
@@ -137,6 +139,7 @@ public class AddOfferController {
     }
 
     public void handleAddOffer() {
+
         OfferService.addOffer(titleAdd.getText(), OfferService.getPhotoTitle(photoAdd), descriptAdd.getText());
         addMessage.setText("Ofertă adaugata!");
     }

@@ -6,12 +6,14 @@ import org.loose.fis.sre.exceptions.PasswordNotOkException;
 import org.loose.fis.sre.exceptions.UserDoesNotExistException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.exceptions.WrongPasswordException;
+import org.loose.fis.sre.model.Request;
 import org.loose.fis.sre.model.TouristAttractions;
 import org.loose.fis.sre.model.User;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 
 import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
@@ -19,18 +21,40 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 public class UserService {
 
     public static ObjectRepository<TouristAttractions> attractionsRepository;
+    public static ObjectRepository<Request> requestsRepository;
 
     private static ObjectRepository<User> userRepository;
 
+    private static Nitrite database;
+
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+        database = Nitrite.builder()
                 .filePath(getPathToFile("registration-example.db").toFile())
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
 
         attractionsRepository = database.getRepository(TouristAttractions.class);
+        requestsRepository = database.getRepository(Request.class);
+
+        findLastRequestId();
     }
+
+    public static void closeDatabase(){
+        database.close();
+    }
+
+    private static void findLastRequestId(){
+        if(requestsRepository!=null) {
+            for (Request request : requestsRepository.find()) {
+                Request.nr = request.getRequestID();
+            }
+            return;
+        }
+
+        Request.nr=0;
+    }
+
 
     public static void printUsers(){
         org.dizitart.no2.objects.Cursor<User> cursor = userRepository.find();
@@ -52,7 +76,7 @@ public class UserService {
         }
     }
 
-    private static void checkPassword(String password) throws PasswordNotOkException{
+    public static void checkPassword(String password) throws PasswordNotOkException{
         if(password.length()<4)
             throw new PasswordNotOkException();
         int nr=0;
@@ -63,7 +87,7 @@ public class UserService {
             throw new PasswordNotOkException();
     }
 
-    private static String encodePassword(String salt, String password) {
+    public static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
@@ -97,5 +121,9 @@ public class UserService {
         for (User user : userRepository.find()) {
             if (!(Objects.equals(username, user.getUsername()))) throw new WrongPasswordException();
         }
+    }
+
+    public static List<User> getAllUsers() {
+        return userRepository.find().toList();
     }
 }

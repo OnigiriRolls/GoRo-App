@@ -4,18 +4,55 @@ import org.dizitart.no2.objects.Id;
 
 public class Request {
     @Id
+    private int requestID;
     private String completeName;
-    private String titleTA;
     private String email;
     private String address;
     private String phone;
+    private String titleAttraction;
+    private String ticketType;
+
+    public static int nr;
+
+    public Request(){}
+
+    public Request(String completeName, String email, String address, String phone, String titleAttraction, String ticketType){
+        this.completeName=completeName;
+        this.email=email;
+        this.address=address;
+        this.phone=phone;
+        this.titleAttraction=titleAttraction;
+        this.ticketType=ticketType;
+        nr++;
+        requestID=nr;
+    }
+
+    public int getRequestID() {
+        return requestID;
+    }
+
+    public String getTitleAttraction() {
+        return titleAttraction;
+    }
+
+    public String getTicketType() {
+        return ticketType;
+    }
+
+    public void setRequestID(int requestID) {
+        this.requestID = requestID;
+    }
+
+    public void setTitleAttraction(String titleAttraction) {
+        this.titleAttraction = titleAttraction;
+    }
+
+    public void setTicketType(String ticketType) {
+        this.ticketType = ticketType;
+    }
 
     public void setCompleteName(String completeName) {
         this.completeName = completeName;
-    }
-
-    public void setTitleTA(String titleTA) {
-        this.titleTA = titleTA;
     }
 
     public void setEmail(String email) {
@@ -32,10 +69,6 @@ public class Request {
 
     public String getCompleteName() {
         return completeName;
-    }
-
-    public String getTitleTA() {
-        return titleTA;
     }
 
     public String getEmail() {

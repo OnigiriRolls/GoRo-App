@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -22,6 +23,9 @@ import java.net.http.WebSocketHandshakeException;
 
 public class RegistrationController {
 
+    public TextField username;
+    public PasswordField password;
+    public Button registerButton;
     @FXML
     private Text registrationMessage;
     @FXML
@@ -45,14 +49,17 @@ public class RegistrationController {
     @FXML
     public void handleRegisterAction() {
         rule1.setText("");
-
-        try {
-            UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
-            registrationMessage.setText("Account created successfully!");
-        } catch (UsernameAlreadyExistsException e) {
-            registrationMessage.setText(e.getMessage());
-        } catch (PasswordNotOkException e){
-            registrationMessage.setText(e.getMessage());
+        if(role.getValue()==null)
+            registrationMessage.setText("Enter role!");
+        else {
+            try {
+                UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
+                registrationMessage.setText("Account created successfully!");
+            } catch (UsernameAlreadyExistsException e) {
+                registrationMessage.setText(e.getMessage());
+            } catch (PasswordNotOkException e) {
+                registrationMessage.setText(e.getMessage());
+            }
         }
     }
 
@@ -67,6 +74,13 @@ public class RegistrationController {
             if(role.getValue().toString().equals("Admin")){
 
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("adminMenu.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else {
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("clientMenu.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
